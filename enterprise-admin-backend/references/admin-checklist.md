@@ -7,8 +7,9 @@ Use this checklist when building or reviewing a management backend, ERP demo, wo
 - Top bar includes system name, global search, messages, todos, help/solution entry, user menu.
 - Sidebar groups modules by business domain.
 - Role switch exists when role-based demos are needed.
-- Breadcrumb and page title are present.
-- Main actions are placed consistently on the right side of the page header.
+- Breadcrumb is present.
+- Page title is omitted when it only repeats the breadcrumb.
+- If a page title/status/action area is needed, it stays compact and places main actions consistently on the right.
 
 ## 2. Global Foundation
 
@@ -26,6 +27,7 @@ For each important object, provide:
 
 - List page.
 - Search/filter area.
+- Compact query layout with controlled spacing.
 - Status filters.
 - Table columns with realistic fields.
 - Row actions.
@@ -49,6 +51,10 @@ For each important object, provide:
 - Column setting entry when many columns exist.
 - Batch actions.
 - Pagination or fixed table height.
+- Header area is shallow enough that filters and table rows are visible in the first screen.
+- Filter area uses compact card/body padding and aligned 32px-36px controls.
+- Inline filters wrap cleanly without creating large vertical gaps.
+- Table toolbar/header is compact and does not consume excessive height.
 
 ## 5. Detail Page
 
@@ -103,8 +109,10 @@ Represent flexibility through:
 ## 9. Visual Quality
 
 - Looks like an operational tool, not a landing page.
+- List pages use enterprise-admin density, not presentation spacing.
 - No explanatory paragraphs inside normal work pages.
 - No large decorative hero blocks in business pages.
+- No large duplicate bold page title under the breadcrumb unless it carries necessary status/actions.
 - Tables and forms are visually stable.
 - Controls do not overlap on desktop or mobile.
 - Status colors are consistent.
