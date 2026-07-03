@@ -1,4 +1,0 @@
-interface:
-  display_name: "企业级管理后台"
-  short_description: "构建企业级管理后台、ERP、工单、待办、通知、审批和列表详情页面的通用规范。"
-  default_prompt: "按企业级管理后台规范设计并实现这个后台系统。"
