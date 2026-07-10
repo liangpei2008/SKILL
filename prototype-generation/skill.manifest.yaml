@@ -1,0 +1,79 @@
+apiVersion: skillpack/v1
+kind: DomainSkill
+
+metadata:
+  id: prototype-generation
+  name: 原型生成技能包
+  version: "1.0.0"
+  domain: 产品原型生成
+  namespace: "http://example.org/skill/prototype-generation#"
+  description: >
+    通过分阶段需求确认，将原始业务需求或需求文档转化为原型说明文档与
+    可点击HTML原型。适用于客户确认、售前演示、需求验证和研发交接。
+  tags: [原型生成, 可点击原型, HTML原型, 售前演示, 需求确认]
+
+spec:
+  sourceRoot: "."
+
+  activation:
+    enabled: true
+    autoload: true
+    priority: 180
+
+  layers:
+    prompt:
+      systemFragment:
+        source: bundled
+        path: prompt/system-fragment.md
+        derive: false
+      glossary:
+        source: bundled
+        path: data/config.yaml
+
+    knowledge:
+      corpus:
+        - source: bundled
+          path: references/prototype-spec.md
+          role: writing_standard
+        - source: bundled
+          path: references/prototype-method.md
+          role: methodology_guide
+        - source: bundled
+          path: references/admin-backend-ui-interaction.md
+          role: ui_interaction_standard
+
+    capability:
+      derive: false
+      artifact: capability/tools.yaml
+      tools:
+        - save_prototype_draft
+        - check_prototype_completeness
+        - generate_prototype_spec
+        - generate_html_prototype
+        - package_prototype
+
+    data:
+      config:
+        source: bundled
+        artifact: data/config.yaml
+
+    assets:
+      htmlTemplate:
+        source: bundled
+        path: assets/html-prototype-template
+
+  boundaries:
+    canAnswer:
+      - 基于原始业务需求进行原型目标和范围探索
+      - 自动补全常见页面结构、交互状态和样例数据
+      - 识别并提问企业专属页面、流程、权限和演示规则
+      - 生成页面清单、页面流、业务流程图和角色权限说明
+      - 为管理后台原型套用预置UI与交互规范
+      - 输出Markdown原型说明文档
+      - 生成可点击HTML原型
+    cannotAnswer:
+      - 替代正式软件需求分析
+      - 技术架构设计
+      - 数据库表结构设计
+      - API接口设计
+      - 生产级前端工程交付，除非用户明确扩展范围
