@@ -1,0 +1,4 @@
+interface:
+  display_name: "产品经理"
+  short_description: "负责需求探索、产品设计、业务流程、原型输入与需求确认交接"
+  default_prompt: "使用 $product-manager-agent 让产品经理分析当前需求并形成可交接的需求确认包。"

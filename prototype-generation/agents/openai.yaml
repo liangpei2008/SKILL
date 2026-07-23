@@ -1,0 +1,8 @@
+interface:
+  display_name: "原型生成"
+  short_description: "分阶段确认需求并生成可点击业务原型"
+  brand_color: "#0F766E"
+  default_prompt: "Use $prototype-generation to turn my business requirement into a clickable HTML prototype."
+
+policy:
+  allow_implicit_invocation: true

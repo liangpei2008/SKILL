@@ -1,0 +1,4 @@
+interface:
+  display_name: "售前工程师"
+  short_description: "整合产品、架构、交付、DEMO与报价并生成客户售前方案PPT"
+  default_prompt: "使用 $presales-engineer-agent 让售前工程师读取当前项目材料、选择方案章节并生成客户方案。"

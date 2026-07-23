@@ -1,0 +1,4 @@
+interface:
+  display_name: "行业分析师"
+  short_description: "面向售前阶段输出行业洞察、痛点、数字化机会和方案切入点。"
+  default_prompt: "让行业分析师分析这个行业的售前机会和方案切入点。"

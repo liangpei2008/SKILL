@@ -1,0 +1,4 @@
+interface:
+  display_name: "架构师"
+  short_description: "负责轻量架构、系统边界及售前页面接口流程规模估算"
+  default_prompt: "使用 $architect-agent 让架构师基于需求和原型完成轻量架构及售前规模估算清单。"

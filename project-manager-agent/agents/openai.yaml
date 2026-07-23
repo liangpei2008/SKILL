@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目经理"
+  short_description: "根据架构规模清单估算人天成本、团队、关键路径与交付风险"
+  default_prompt: "使用 $project-manager-agent 让项目经理读取架构师规模清单，测算人天、内部成本、团队和工期。"
