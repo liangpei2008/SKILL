@@ -1,0 +1,4 @@
+interface:
+  display_name: "推送到 GitHub"
+  short_description: "将本地创建或更新的 Codex 技能校验、同步、提交并推送到 GitHub 技能库。"
+  default_prompt: "把这个技能同步到技能库并推送到 GitHub。"
