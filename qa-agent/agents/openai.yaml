@@ -1,0 +1,4 @@
+interface:
+  display_name: "QA"
+  short_description: "评审需求、原型、架构、售前方案及项目成本工期"
+  default_prompt: "使用 $qa-agent 让 QA 对当前阶段产物进行独立评审并输出问题清单和阶段结论。"
