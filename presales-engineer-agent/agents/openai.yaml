@@ -1,0 +1,4 @@
+interface:
+  display_name: "售前工程师"
+  short_description: "轻量行业速研、客户边界分析，并整合售前方案与PPT"
+  default_prompt: "使用 $presales-engineer-agent 让售前工程师做行业地图、项目边界分析，并整合客户售前方案。"
