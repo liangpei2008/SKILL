@@ -97,9 +97,11 @@ Do not skip stages unless the user explicitly narrows the task. Ask business-spe
 
 Stage 2 commitments are binding. Every page/module confirmed by the user or added with `[AI自动补全]` in Stage 2 must be represented in the final prototype specification and, for clickable HTML output, must have a corresponding navigable page/view/section. Do not collapse many confirmed modules into one sample page unless the user explicitly approves a reduced scope. If time or scope requires abbreviation, state the proposed reduction and get confirmation first.
 
-For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include two default main-menu module groups unless the user explicitly excludes them. Mark inferred groups as `[AI自动补全]`. The default page map is:
+For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include a `系统管理` top-level menu unless the user explicitly excludes it. Mark inferred groups as `[AI自动补全]`. Business-domain pages should be grouped under a `业务平台` top-level menu. The default page map is:
 
-Main menu: `权限管理`
+Top-level menu: `系统管理`
+
+Expandable submenu: `权限管理`
 
 - 用户管理: user list/search, create/edit dialog, enable/disable, reset password, assign roles, bind department/post, select primary department where applicable, status tags, and operation feedback.
 - 角色管理: full-width role list/search page, create/edit dialog, row actions for edit/permission configuration/enable-disable, menu permission tree, button permissions, and data-scope settings in a dialog or drawer, multiple-role summary where applicable, and save feedback. Do not use a left-right split with a role list on the left and permission details on the right.
@@ -107,12 +109,22 @@ Main menu: `权限管理`
 - 部门管理: left organization tree plus right table/detail area, parent department, owner, member list, create/edit, enable/disable, and status feedback.
 - 岗位管理: post table, post code/name/sort, applicable department, associated users, create/edit, enable/disable, and status feedback.
 
-Main menu: `日志管理`
+Expandable submenu: `日志管理`
 
 - 审计日志: permission changes, role-menu/button/data-scope changes, user status changes, system configuration changes, export/download traces, before/after value comparison, query filters, detail drawer/dialog, result tags, actor/object/time/IP/device fields when relevant, and export.
 - 操作日志: login/logout or login-failure records when applicable, business operation records, CRUD actions, import/export actions, request result, exception summary, query filters, detail drawer/dialog, result tags, actor/object/time/IP/device fields when relevant, and export.
 
-Main menu: `协同办公`
+Direct pages under `系统管理`:
+
+- 令牌管理: token/session list with username, client, token, expiration time, status, and a row action for offline/logout. Include batch offline where relevant and record offline reason.
+- 敏感词管理: sensitive-word/rule list with rule name, sensitive expression, applicable scope, handling strategy, status, create/edit, enable/disable, import/export where relevant, and audit feedback.
+- 参数管理: system-rule and business-rule parameter list with name, key, value, status, system identifier, and a row action for modify. Parameter changes should require a reason and create audit trace.
+- 消息推送: message push list/search, create/edit dialog, message type, title, content, receiver scope, receiver users/roles/departments, channel selection, SMS, email, internal message, announcement where applicable, scheduled/immediate sending, send status, failure reason, retry/resend, revoke/withdraw where allowed, read status for internal messages, delivery log, channel configuration entries, and operation/audit traces.
+- 消息推送页面布局硬约束: for PC management backend prototypes, do not design message push as a left-right split page. Use one full-width page with three top tabs: `站内信`, `短信`, and `邮件`. The `站内信` tab table must include `ID`, `分类`, `标题`, `全部通知`, `已发送`, `排序`, with row actions `详情`, `删除`, `接收情况`. The `短信` tab table must include `业务名称`, `业务编码`, `平台`, `启动状态`, with row actions `测试`, `修改`, `删除`, `日志`; `日志` opens sending history. The `邮件` tab table must include `业务名称`, `业务编码`, `服务地址`, `启动状态`, with row actions `测试`, `修改`, `删除`, `日志`; `日志` opens sending history.
+
+Top-level menu: `业务平台`
+
+Business-domain pages must be grouped under `业务平台`, not mixed into `系统管理`. If collaborative office is in scope, include:
 
 - 待办任务: task list/search, source process, initiator, current node, arrival time, deadline, priority, approve/reject/transfer actions, approval opinion dialog, attachments or comments where relevant, and process trace.
 - 我的发起: process instances started by the current user, business object, current node, current handler, status, submit time, withdraw or urge action where applicable, detail drawer/dialog, and process trace.
@@ -123,12 +135,7 @@ Top-right basic function: `消息提醒`
 
 - Place a notification bell in the PC management backend top-right area. The bell must show unread count and open a realistic message list, not only a toast. Include unread/read tags, message type, source business object, trigger time, priority, click-to-detail or jump target, mark-read/clear actions, and examples covering workflow tasks, copied workflow messages, system notices, approval results, import/export results, and business warnings.
 
-Main menu: `消息中心`
-
-- 信息推送: message push list/search, create/edit dialog, message type, title, content, receiver scope, receiver users/roles/departments, channel selection, SMS, email, internal message, announcement where applicable, scheduled/immediate sending, send status, failure reason, retry/resend, revoke/withdraw where allowed, read status for internal messages, delivery log, channel configuration entries, and operation/audit traces.
-- 信息推送页面布局硬约束: for PC management backend prototypes, do not design information push as a left-right split page. Use one full-width page with three top tabs: `站内信`, `短信`, and `邮件`. The `站内信` tab table must include `ID`, `分类`, `标题`, `全部通知`, `已发送`, `排序`, with row actions `详情`, `删除`, `接收情况`. The `短信` tab table must include `业务名称`, `业务编码`, `平台`, `启动状态`, with row actions `测试`, `修改`, `删除`, `日志`; `日志` opens sending history. The `邮件` tab table must include `业务名称`, `业务编码`, `服务地址`, `启动状态`, with row actions `测试`, `修改`, `删除`, `日志`; `日志` opens sending history.
-
-These foundational pages do not count as generated if they are only sidebar labels or placeholder pages. In clickable HTML prototypes, each page must include realistic data, query controls, an action bar, table/tree/table-tree content, pagination where relevant, at least one create/edit/detail interaction, enable/disable or confirmation feedback where relevant, and permission-aware disabled/hidden operations. `权限管理` and `日志管理` must be separate main-menu groups in the navigation when the prototype uses a sidebar/tree menu.
+These foundational pages do not count as generated if they are only sidebar labels or placeholder pages. In clickable HTML prototypes, each page must include realistic data, query controls, an action bar, table/tree/table-tree content, pagination where relevant, at least one create/edit/detail interaction, enable/disable/offline/modify or confirmation feedback where relevant, and permission-aware disabled/hidden operations. `系统管理` must show `权限管理`, `日志管理`, `令牌管理`, `敏感词管理`, `参数管理`, and `消息推送`; `权限管理` and `日志管理` must be expandable/collapsible submenu groups when the prototype uses a sidebar/tree menu.
 
 ## Output Modes
 
@@ -148,7 +155,7 @@ For management backend prototypes, apply `references/admin-backend-ui-interactio
 
 For management backend pages that show different business categories and each category's detail table, do not use a left-right split with category navigation on the left and a detail table on the right. Use a full-width content page with top category tabs; when there are three categories, render three top tabs and keep each tab's query form, action bar, table, pagination, row actions, and dialogs inside the full-width page. Reserve left-tree/right-table only for true hierarchical organization, department, region, or tree-structured master data, not for ordinary category switching.
 
-When using PIGX/PigX as the backend style reference, treat the official documentation as support for RBAC, user-role-menu relations, button permissions, data scopes, routes/menu conventions, organization selectors, table patterns, Flowable-based collaborative workflow, and message-push capabilities. `Flowable 协同办公模块使用` supports workflow initiation, approval, rejection, process groups, process creation, form design, and workflow designer concepts; `Flowable 自定义业务表单` supports binding complex business forms to workflow instances; `信息推送功能使用` supports information-push management, internal messages, announcements, receiver scope, top-right notification bell visibility, and `RemoteMessageService` for SMS, email, hook messages, and internal messages/announcements; `登录短信验证码发送` supports SMS-channel maintenance; `整合邮件发送` supports email integration; `common-sse 模块使用` and `common-websocket 模块使用` support real-time server push when needed. PIG official search may not expose a complete standalone page template for `审计日志`, `操作日志`, `待办任务`, `我的发起`, `抄送给我`, `我的已办`, or every message-channel configuration detail; in that case, keep the PIG-supported concepts and complete page fields and interaction depth according to the default `权限管理`/`日志管理`/`协同办公`/`消息中心` rules above and the project's confirmed business requirements.
+When using PIGX/PigX as the backend style reference, treat the official documentation as support for RBAC, user-role-menu relations, button permissions, data scopes, routes/menu conventions, organization selectors, table patterns, Flowable-based collaborative workflow, token/session governance, parameter management, sensitive-word/rule governance, and message-push capabilities. `Flowable 协同办公模块使用` supports workflow initiation, approval, rejection, process groups, process creation, form design, and workflow designer concepts; `Flowable 自定义业务表单` supports binding complex business forms to workflow instances; `信息推送功能使用` supports information-push management, internal messages, announcements, receiver scope, top-right notification bell visibility, and `RemoteMessageService` for SMS, email, hook messages, and internal messages/announcements; `登录短信验证码发送` supports SMS-channel maintenance; `整合邮件发送` supports email integration; `common-sse 模块使用` and `common-websocket 模块使用` support real-time server push when needed. PIG official search may not expose a complete standalone page template for `审计日志`, `操作日志`, `令牌管理`, `敏感词管理`, `参数管理`, `待办任务`, `我的发起`, `抄送给我`, `我的已办`, or every message-channel configuration detail; in that case, keep the PIG-supported concepts and complete page fields and interaction depth according to the default `系统管理`/`业务平台` rules above and the project's confirmed business requirements.
 
 For mobile prototypes, apply `references/mobile-ui-interaction.md` first, then layer the platform supplement. Mobile prototypes should prioritize short task paths, thumb-friendly actions, strong feedback, focused screens, constrained data density, and platform-native navigation patterns.
 
