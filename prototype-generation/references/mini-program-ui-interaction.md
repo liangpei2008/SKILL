@@ -9,6 +9,7 @@
 1. `frontend-design` 通用前端质量原则。
 2. `mobile-ui-interaction.md` 移动端通用规范。
 3. 本文件的小程序平台补充规范。
+4. `mini-program-template-system.md` 固定页面模板与组件模板；生成 HTML 小程序原型时必须先选模板，再组合组件。
 
 ## 参考来源
 

@@ -57,7 +57,7 @@ Read the relevant bundled references before running the workflow:
 - Apply `frontend-design` as the top-level frontend quality standard when generating clickable UI artifacts, especially HTML/CSS/JS prototypes.
 - `references/admin-backend-ui-interaction.md` when the requested prototype is a management backend, admin console, operations platform, internal system, CRM/ERP/OA-style back office, or data-management console.
 - `references/mobile-ui-interaction.md` when the requested prototype is mobile-facing, including mini programs, H5/mobile web, native apps, or mobile business tools.
-- `references/mini-program-ui-interaction.md` in addition to the mobile baseline when the prototype is a WeChat/Enterprise WeChat/mini program.
+- `references/mini-program-ui-interaction.md` and `references/mini-program-template-system.md` in addition to the mobile baseline when the prototype is a WeChat/Enterprise WeChat/mini program.
 - `references/mobile-h5-ui-interaction.md` in addition to the mobile baseline when the prototype is mobile H5, mobile web, browser-based, campaign page, or public-account page.
 - `references/native-app-ui-interaction.md` in addition to the mobile baseline when the prototype is an Android/native app. APP prototypes are Android / Material Design first unless the user explicitly asks for iOS.
 - `assets/html-prototype-template/` when generating a standalone HTML prototype and the project does not already provide a better frontend stack.
@@ -75,7 +75,7 @@ General frontend design quality standard
 |
 +-- Mobile
     +-- references/mobile-ui-interaction.md
-        +-- Mini program: references/mini-program-ui-interaction.md
+        +-- Mini program: references/mini-program-ui-interaction.md + references/mini-program-template-system.md
         +-- Mobile H5: references/mobile-h5-ui-interaction.md
         +-- Native app / Android app: references/native-app-ui-interaction.md
 ```
@@ -179,6 +179,8 @@ For all mobile terminals, including mini programs, mobile H5, mobile web, and na
 
 For mini program prototypes, ask during Stage 0 whether the user wants the default mobile technology palette or a WeChat-green / WeUI-native visual style. Recommend the default technology palette unless the user explicitly wants WeChat-native green, brand colors, or a scenario strongly tied to WeChat payment/authorization success semantics.
 
+For mini program prototypes, use `references/mini-program-template-system.md` as the fixed page/component template library. For every mini-program page, choose a template ID such as `MP-PAGE-LIST`, `MP-PAGE-DETAIL`, `MP-PAGE-FORM`, `MP-PAGE-MINE`, or `MP-PAGE-WORKBENCH` before writing HTML/CSS. Compose pages from the named components in that reference (`mp-search`, `mp-filter`, `mp-list-card`, `mp-cell`, `mp-bottom-action`, `mp-bottom-sheet`, etc.) instead of inventing ad hoc card/query/button layouts. Record the selected template IDs in the prototype handoff note or prototype specification. Do not require screenshot verification unless the user explicitly asks for visual QA.
+
 中文硬约束：移动端默认配色使用 `mobile-ui-interaction.md` 的“默认科技色与信息层级”，参考 PigX 蓝色主调：主色 `#2E5CF6`，辅助青 `#06B6D4`，扩展靛紫 `#6366F1`，文字使用冷灰层级，卡片/背景使用浅蓝白体系；热门/限制等普通状态用蓝/青标签，成功用绿色，警告用琥珀，失败/冲突/危险才用红色。不得默认使用土黄、棕橙、脏绿、米色等低质感色彩。
 
 中文硬约束：如果终端类型是小程序，阶段零必须提示用户选择配色：1）默认移动端科技色（推荐）；2）微信绿/WeUI 原生风格。用户未选择前，默认建议科技色，但不得声称已确认微信绿。
@@ -204,6 +206,7 @@ Before claiming completion:
 - Check that role-specific differences and data ranges are explicit.
 - Check that `[待确认]` items are listed in an appendix or confirmation list.
 - Check that the correct UI standard branch was loaded: management backend, mobile baseline, and any mini program/H5/native app supplement.
+- For mini program prototypes, check that each page uses a fixed template from `mini-program-template-system.md` and that list/search/form/mine/detail pages are composed from the standard component templates rather than PC-style query bars, tables, left-right splits, or ad hoc shrinking cards.
 - For multi-terminal HTML prototypes, check that each terminal opens independently and is not visually merged with another terminal on the same screen.
 - For mobile/APP HTML prototypes, check that the result satisfies the mobile hard criteria: phone viewport, platform navigation, touch target sizes, safe areas, Back behavior, mobile-appropriate list/card/detail/form/result patterns, and required states. If it resembles a desktop web page placed in a phone shell, revise it before delivery.
 - For HTML prototypes, start a local server when needed and provide the URL; if it is a static file that works directly, provide the absolute file path.
