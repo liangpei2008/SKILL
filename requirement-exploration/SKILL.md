@@ -50,9 +50,44 @@ Follow the staged process in `prompt/system-fragment.md`:
 
 Do not skip stages unless the user explicitly asks to narrow the task. Ask business-specific B-class questions instead of inventing answers. Use `[AI自动补全]`, `[已确认]`, and `[待确认]` markers as defined by the source prompt.
 
+For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include the following two default main-menu capability groups unless the user explicitly excludes them. Mark inferred groups as `[AI自动补全]`, and ask the user to confirm whether they are in scope.
+
+Default main menu 1: `权限管理`. Include these sub-functions:
+
+- 用户管理: account list/search, create/edit, enable/disable, reset password, assign roles, bind department and post, set primary department where applicable, and record user status.
+- 角色管理: role list/search, create/edit, enable/disable, assign menu tree, assign button permissions, configure data scope, and handle multiple-role permission aggregation where applicable.
+- 菜单管理: directory/menu/button hierarchy, route or component identifier, permission code, icon, sort order, visibility, cache, enable/disable status, and route/menu protection.
+- 部门管理: organization tree, parent department, department owner, department members, create/edit, enable/disable, and department status.
+- 岗位管理: post list/search, post code, name, sort order, applicable department, associated users, create/edit, and enable/disable.
+- 网站配置: system name, logo, login-page display, copyright, base parameters, upload limits, message settings, dictionary/basic parameter maintenance, and tenant/display configuration where applicable.
+
+Default main menu 2: `日志管理`. Include these sub-functions:
+
+- 审计日志: permission changes, role-menu/button/data-scope changes, user status changes, system configuration changes, export/download traces, actor, object, before/after values, time, result, IP/device when relevant, query, detail, and export.
+- 操作日志: login/logout or login-failure records when applicable, business operations, CRUD actions, import/export actions, request result, exception summary, actor, object, time, IP/device, query, detail, and export.
+
+Default main menu 3: `协同办公`. Include these sub-functions:
+
+- 待办任务: pending approvals or workflow tasks assigned to the current user, task title, source process, initiator, current node, arrival time, deadline, priority, approve/reject/transfer actions, comments, attachments, and process trace.
+- 我的发起: workflow instances started by the current user, process title, business object, current node, current handler, status, submit time, withdraw or urge actions where applicable, detail, and process trace.
+- 抄送给我: workflow or task copies sent to the current user, source process, initiator, copy reason, copy time, read/unread status, mark-read action, detail, and trace.
+- 我的已办: tasks already processed by the current user, process title, handled node, action result, handled time, opinion, next node or final status, detail, and trace.
+- 流程管理: workflow grouping, process definition list, enable/disable, basic information, dynamic form or business-form binding, workflow designer entry, approver/CC/rule configuration, publish/version status, and process definition audit trail.
+
+Default top-right basic function: `消息提醒`. For PC management backends, include a notification bell in the page top-right area unless the user explicitly excludes it. It should expose unread count, message list, read/unread state, message type, source business object, trigger time, priority, click-to-detail or jump target, mark-read/clear actions, and audit/log needs. It should be able to surface workflow tasks, copied workflow messages, system notices, approval results, import/export results, and business warnings.
+
+Default main menu 4: `消息中心`. Include this sub-function:
+
+- 信息推送: message push list/search, create/edit, title, content, message type, receiver scope, receiver users/roles/departments, channel selection, SMS, email, internal message, announcement where applicable, scheduled/immediate sending, send status, failure reason, retry/resend, revoke/withdraw where allowed, read status for internal messages, delivery log, and operation/audit traces.
+- 信息推送页面结构需求: when PC management backend information-push capability is in scope, record that the page should use three tabs instead of a left-right split: `站内信`, `短信`, `邮件`. Confirm or draft the tab fields and actions as follows: `站内信` includes `ID`, `分类`, `标题`, `全部通知`, `已发送`, `排序`, with actions `详情`, `删除`, `接收情况`; `短信` includes `业务名称`, `业务编码`, `平台`, `启动状态`, with actions `测试`, `修改`, `删除`, `日志`; `邮件` includes `业务名称`, `业务编码`, `服务地址`, `启动状态`, with actions `测试`, `修改`, `删除`, `日志`. SMS/email logs must describe sending history.
+
+When these functions are included, record their requirement scope, primary actors, data-permission range, audit/log needs, acceptance criteria, and whether they are based on a common platform such as PIGX/PigX. Do not treat these foundational functions as implementation detail only; they affect scope, quotation, acceptance, role permissions, notification reachability, message-channel cost, compliance retention, and prototype coverage.
+
+When using PIGX/PigX as a reference, ground the functional description in official PIG documentation where available: `系统权限管理基础` supports RBAC with user-role-menu/button permission relations; `系统数据权限使用` supports data scopes such as all, current department, current department and children, custom departments, and self; `系统按钮权限使用` supports button permission marks and front/back permission checks; `前端组件路由管理` supports menu-route/component conventions; `前端组织架构组件` supports selecting users, departments, roles, and posts; `系统多租户使用` and version notes support tenant/display and login-related configuration references; `Flowable 协同办公模块使用` supports workflow initiation, approval, rejection, process groups, process creation, form design, and workflow designer concepts; `Flowable 自定义业务表单` supports binding complex business forms to workflow instances; `信息推送功能使用` supports information-push management, internal messages, announcements, receiver scope, top-right notification bell visibility, and `RemoteMessageService` for SMS, email, hook messages, and internal messages/announcements; `登录短信验证码发送` supports SMS-channel maintenance; `整合邮件发送` supports email integration; `common-sse 模块使用` and `common-websocket 模块使用` support real-time server push where needed. PIG official search may not expose a complete standalone page template for `审计日志`, `操作日志`, `网站配置`, `待办任务`, `我的发起`, `抄送给我`, `我的已办`, or every message-channel configuration detail; in that case, keep the PIG-supported concepts and complete the requirement fields from common admin-platform practice, while clearly marking business-specific details as `[待确认]`.
+
 For each state-changing core function or process, check whether withdrawal, rejection, cancellation, voiding, pause/resume, correction, reopening, or business-rule failure applies. Record actor, allowed pre-state, action, post-state, downstream/object/metric impact, approval/audit needs, and acceptance outcome. Permit explicit `不适用`. Draw material branches; keep simple validation failures in rule tables.
 
-During function and process exploration, ask whether collaboration-office capabilities or information-push capabilities are needed. Collaboration may include task co-processing, comments, attachments, to-dos, handoff, and internal coordination. Information push may include in-app messages, SMS, email, Enterprise WeChat/DingTalk, or other channels. If needed, record trigger scenario, receiver role, channel, template/content, frequency/timing, failure handling, and audit/log requirements. If not needed, record `不适用`.
+During function and process exploration, ask whether collaboration-office capabilities or information-push capabilities are needed. Collaboration may include task co-processing, comments, attachments, to-dos, handoff, and internal coordination. Information push may include top-right message reminders, internal messages, SMS, email, announcements, Enterprise WeChat/DingTalk, or other channels. If needed, record trigger scenario, receiver role, channel, template/content, receiver scope, immediate/scheduled sending, retry/failure handling, read status, channel cost or third-party dependency, and audit/log requirements. If not needed, record `不适用`.
 
 For applications where users can upload, publish, comment, leave messages, edit rich text, or submit attachment descriptions, ask whether sensitive-word management or content moderation is required. If needed, record covered content, dictionary maintenance role, hit handling, manual review, appeal/recheck, audit logs, and acceptance criteria. If not needed, record `不适用`.
 
