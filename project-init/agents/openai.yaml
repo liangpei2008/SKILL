@@ -1,0 +1,4 @@
+interface:
+  display_name: "初始化目录结构"
+  short_description: "创建轻量项目目录、项目索引和角色协作规则"
+  default_prompt: "使用 $project-init 初始化项目目录结构，并生成项目索引和项目级 AGENTS.md。"

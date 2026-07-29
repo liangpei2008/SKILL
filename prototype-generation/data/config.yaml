@@ -1,0 +1,168 @@
+version: "1.0.0"
+domain: 原型生成
+
+document:
+  format: markdown
+  encoding: utf-8
+  required_sections:
+    - 原型目标与范围
+    - 用户角色与使用场景
+    - 页面/模块清单
+    - 页面流与业务流程
+    - 页面详细说明
+    - 角色权限与数据范围
+    - 样例数据说明
+    - 待确认问题清单
+    - 原型交付说明
+
+interaction:
+  max_questions_per_batch: 6
+  max_followup_rounds: 2
+  stages:
+    - name: 原型目标确认
+      round: 0
+      output: 总体范围确认
+    - name: 用户与场景探索
+      round: 1
+      output: 用户目标和演示主线
+    - name: 页面结构探索
+      round: 2
+      output: 页面清单与导航关系
+    - name: 页面交互探索
+      round: 3
+      output: 页面内容、动作、状态和样例数据
+    - name: 角色权限探索
+      round: 4
+      output: 角色权限与数据范围
+    - name: 原型生成
+      round: 5
+      output: Markdown说明或HTML原型
+
+prototype:
+  default_output_dir: prototype-generation
+  html_template: assets/html-prototype-template
+  prefer_static_html: true
+  include_mermaid: true
+  design_baseline:
+    skill: frontend-design
+    role: 通用前端设计质量标准
+    apply_when:
+      - 生成HTML原型
+      - 生成可点击前端原型
+      - 生成页面视觉和交互
+  profiles:
+    management_backend:
+      trigger_keywords:
+        - 管理后台
+        - 运营后台
+        - 后台
+        - 管理端
+        - 内部系统
+        - CRM
+        - ERP
+        - OA
+        - 台账
+        - 审批后台
+        - 权限管理
+        - 数据管理
+      reference: references/admin-backend-ui-interaction.md
+      default_first_screen: 工作台或业务列表
+      required_patterns:
+        - 左侧导航
+        - 顶部全局操作区
+        - 筛选区
+        - 表格列表
+        - 分页
+        - 详情页或抽屉
+        - 新增或编辑表单
+        - 审批或处理反馈
+        - 角色权限差异
+    mobile:
+      trigger_keywords:
+        - 移动端
+        - 手机端
+        - APP
+        - App
+        - 小程序
+        - H5
+        - 掌上
+        - 扫码
+        - 企微
+        - 微信
+      reference: references/mobile-ui-interaction.md
+      required_patterns:
+        - 手机视口
+        - 顶部导航
+        - 底部主导航或主操作
+        - 触摸反馈
+        - 加载/空/错状态
+        - 表单校验
+        - Toast或结果反馈
+    mini_program:
+      trigger_keywords:
+        - 小程序
+        - 微信小程序
+        - 企业微信小程序
+        - 企微小程序
+        - 微信授权
+        - 企微
+      base_reference: references/mobile-ui-interaction.md
+      reference: references/mini-program-ui-interaction.md
+    mobile_h5:
+      trigger_keywords:
+        - H5
+        - 移动网页
+        - 手机网页
+        - 公众号页面
+        - 手机浏览器
+        - 落地页
+      base_reference: references/mobile-ui-interaction.md
+      reference: references/mobile-h5-ui-interaction.md
+    native_app:
+      trigger_keywords:
+        - APP
+        - App
+        - 原生APP
+        - Android APP
+        - iOS
+        - Android
+        - 安卓
+        - 苹果
+      base_reference: references/mobile-ui-interaction.md
+      reference: references/native-app-ui-interaction.md
+      default_platform: Android
+      design_system: Android Material Design 3
+
+completeness_checklist:
+  目标与场景:
+    - 是否明确原型用途和目标观众
+    - 是否明确必须跑通的核心演示流程
+    - 是否明确本期包含和排除的范围
+  页面与流程:
+    - 是否列出全部页面和模块
+    - 是否每个核心流程都有Mermaid页面流或业务流
+    - 是否每个页面都有入口、出口和跳转目标
+  页面内容:
+    - 是否每个页面都有展示信息、主要操作和状态反馈
+    - 是否关键页面都有合理样例数据
+    - 是否页面类型覆盖了业务需要
+  角色与权限:
+    - 是否列出全部角色
+    - 是否明确每个角色可见页面和可操作动作
+    - 是否每个列表或查询页面都明确不同角色的数据范围
+  交付:
+    - 是否列出待确认问题
+    - 是否说明如何打开或预览原型
+    - 若生成HTML，是否确认核心路径可以点击跑通
+  管理后台:
+    - 是否识别并套用了管理后台UI与交互规范
+    - 是否列表页包含筛选、表格、分页、行内操作、批量操作和状态反馈
+    - 是否表单页包含字段分组、校验、保存、提交、取消和错误反馈
+    - 是否详情页包含状态、关联记录、操作日志或流转记录
+    - 是否权限、审批、导入导出和危险操作均有明确交互规则
+  移动端:
+    - 是否识别并套用了移动端通用UI与交互规范
+    - 是否按小程序、H5或APP叠加了对应平台补充规范
+    - 是否关键操作满足触摸目标、拇指热区、反馈和防误触要求
+    - 是否列表、详情、表单、提交结果、空状态、错误状态适合手机视口
+    - 是否处理了键盘、滚动、返回、授权或登录等移动端关键交互
