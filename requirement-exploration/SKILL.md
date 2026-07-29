@@ -69,9 +69,9 @@ Expandable submenu 2: `日志管理`. Include these sub-functions:
 
 Direct functions under `系统管理`:
 
-- 令牌管理: token/session list with username, client, token, expiration time, status, offline/logout action, batch offline where relevant, offline reason, and operation/audit trace.
-- 敏感词管理: sensitive-word/rule list with rule name, sensitive expression, applicable scope, handling strategy, status, create/edit, enable/disable, import/export where relevant, and audit feedback.
-- 参数管理: system-rule and business-rule parameter list with name, key, value, status, system identifier, modify action, modification reason, and audit trace.
+- 令牌管理: token/session list with username, client, token, expiration time, status, offline/logout row action, offline reason, and operation/audit trace. Do not default to a batch-offline or "offline selected token" action unless the user explicitly confirms it.
+- 敏感词管理: sensitive-word list with sensitive word, type, remark, and row operations. Type must be whitelist or blacklist. Do not default to advanced columns such as rule name, applicable scope, handling strategy, or status unless the user explicitly asks for advanced sensitive-word rules.
+- 参数管理: system-rule and business-rule parameter list with name, key, value, status, system identifier, modify row action, modification reason, and audit trace. Do not default to a "modify selected parameter" action.
 - 消息推送: message push list/search, create/edit, title, content, message type, receiver scope, receiver users/roles/departments, channel selection, SMS, email, internal message, announcement where applicable, scheduled/immediate sending, send status, failure reason, retry/resend, revoke/withdraw where allowed, read status for internal messages, delivery log, and operation/audit traces.
 - 消息推送页面结构需求: when PC management backend message-push capability is in scope, record that the page should be under `系统管理` and use three tabs instead of a left-right split: `站内信`, `短信`, `邮件`. Confirm or draft the tab fields and actions as follows: `站内信` includes `ID`, `分类`, `标题`, `全部通知`, `已发送`, `排序`, with actions `详情`, `删除`, `接收情况`; `短信` includes `业务名称`, `业务编码`, `平台`, `启动状态`, with actions `测试`, `修改`, `删除`, `日志`; `邮件` includes `业务名称`, `业务编码`, `服务地址`, `启动状态`, with actions `测试`, `修改`, `删除`, `日志`. SMS/email logs must describe sending history.
 
