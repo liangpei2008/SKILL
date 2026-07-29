@@ -97,7 +97,7 @@ Do not skip stages unless the user explicitly narrows the task. Ask business-spe
 
 Stage 2 commitments are binding. Every page/module confirmed by the user or added with `[AI自动补全]` in Stage 2 must be represented in the final prototype specification and, for clickable HTML output, must have a corresponding navigable page/view/section. Do not collapse many confirmed modules into one sample page unless the user explicitly approves a reduced scope. If time or scope requires abbreviation, state the proposed reduction and get confirmation first.
 
-For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include a `系统管理` top-level menu unless the user explicitly excludes it. Mark inferred groups as `[AI自动补全]`. Business-domain pages should be grouped under a `业务平台` top-level menu. The default page map is:
+For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include top-level menus for `业务平台`, `统计平台`, and `系统管理` unless the user explicitly excludes them. Mark inferred groups as `[AI自动补全]`. Business processing pages should be grouped under `业务平台`; statistics, dashboard, analysis, report, BI, export, metrics, and ledger-summary pages should be grouped under `统计平台`; foundational governance pages should be grouped under `系统管理`. The default page map is:
 
 Top-level menu: `系统管理`
 
@@ -124,12 +124,16 @@ Direct pages under `系统管理`:
 
 Top-level menu: `业务平台`
 
-Business-domain pages must be grouped under `业务平台`, not mixed into `系统管理`. If collaborative office is in scope, include:
+Business processing pages must be grouped under `业务平台`, not mixed into `统计平台` or `系统管理`. If collaborative office is in scope, include:
 
 - 待办任务: task list/search, source process, initiator, current node, arrival time, deadline, priority, approve/reject/transfer actions, approval opinion dialog, attachments or comments where relevant, and process trace.
 - 我的发起: process instances started by the current user, business object, current node, current handler, status, submit time, withdraw or urge action where applicable, detail drawer/dialog, and process trace.
 - 抄送给我: copied workflow/task list, source process, initiator, copy reason, copy time, read/unread tags, mark-read action, detail drawer/dialog, and process trace.
 - 我的已办: processed task list, handled node, action result, handled time, opinion, next node or final status, detail drawer/dialog, and process trace.
+
+Top-level menu: `统计平台`
+
+Statistics-class pages must be grouped under `统计平台`, not under `业务平台`. Include dashboard, statistics analysis, report center, BI cockpit, metric dictionary, data aggregation, export center, HR/finance export, trend analysis, ranking, conversion funnel, and other query/summary/export-oriented capabilities here. For the current project pattern, `运营驾驶舱`, `统计分析`, and `HR/财务导出` belong under `统计平台`.
 
 Top-right basic function: `消息提醒`
 

@@ -50,7 +50,7 @@ Follow the staged process in `prompt/system-fragment.md`:
 
 Do not skip stages unless the user explicitly asks to narrow the task. Ask business-specific B-class questions instead of inventing answers. Use `[AI自动补全]`, `[已确认]`, and `[待确认]` markers as defined by the source prompt.
 
-For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include a `系统管理` top-level menu unless the user explicitly excludes it. Mark inferred groups as `[AI自动补全]`, and ask the user to confirm whether they are in scope. Business-domain capabilities should be grouped under a `业务平台` top-level menu.
+For any PC management backend, admin console, internal operations platform, CRM/ERP/OA-style system, or project that mentions system administration, permissions, organization, tenant, configuration, audit, or logs, Stage 2 must include top-level menus for `业务平台`, `统计平台`, and `系统管理` unless the user explicitly excludes them. Mark inferred groups as `[AI自动补全]`, and ask the user to confirm whether they are in scope. Business processing capabilities should be grouped under `业务平台`; statistics, dashboard, analysis, report, BI, metric, aggregation, and export capabilities should be grouped under `统计平台`; foundational governance capabilities should be grouped under `系统管理`.
 
 Default top-level menu: `系统管理`.
 
@@ -81,6 +81,8 @@ Default top-level menu: `业务平台`. Business system functions should be grou
 - 我的发起: workflow instances started by the current user, process title, business object, current node, current handler, status, submit time, withdraw or urge actions where applicable, detail, and process trace.
 - 抄送给我: workflow or task copies sent to the current user, source process, initiator, copy reason, copy time, read/unread status, mark-read action, detail, and trace.
 - 我的已办: tasks already processed by the current user, process title, handled node, action result, handled time, opinion, next node or final status, detail, and trace.
+
+Default top-level menu: `统计平台`. Statistics-class functions should be grouped here, not under `业务平台`. Include dashboards, statistics analysis, report center, BI cockpit, metric dictionary, data aggregation, export center, HR/finance export, trend analysis, ranking, conversion funnel, and other query/summary/export-oriented functions when they are in scope.
 
 Default top-right basic function: `消息提醒`. For PC management backends, include a notification bell in the page top-right area unless the user explicitly excludes it. It should expose unread count. Clicking the bell should first open a small dropdown window with recent reminders and a top-right `全部` link/button; clicking `全部` should open a right-side drawer with the full message list. Record read/unread state, message type, source business object, trigger time, priority, click-to-detail or jump target, mark-read/clear actions, and audit/log needs. It should be able to surface workflow tasks, copied workflow messages, system notices, approval results, import/export results, and business warnings.
 
