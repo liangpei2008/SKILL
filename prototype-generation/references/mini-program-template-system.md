@@ -12,6 +12,48 @@
 
 本模板体系不要求截图验收。完成时做结构自检：页面是否使用了模板、组件是否全宽稳定、触控区是否不小于 44px、底部操作是否避开安全区、是否没有 PC 表格/查询栏压缩痕迹。
 
+## Wot UI 参考基准
+
+小程序原型默认可按 Wot UI / Wot Design Uni 的设计规范、模板和组件体系组织。参考来源：
+
+- 设计价值观：`https://wot-ui.cn/guide/design.html`
+- 模板：`https://wot-ui.cn/guide/templates.html`
+- 组件：`https://wot-ui.cn/component/button.html`
+
+设计取向：
+
+- 归一：同一类页面用同一模板，同一类控件用同一组件语义，避免每页自造结构。
+- 务实：业务信息优先，减少装饰；列表、筛选、表单、反馈路径要短。
+- 开放：允许按业务扩展字段和状态，但不得破坏固定页面骨架。
+- 友好：触控区、反馈、空状态、加载和错误提示必须完整。
+
+模板取向：
+
+- 真实 uni-app 项目可优先参考 `wot-starter`，也可按项目技术栈参考 `vitesse-uni-app`、`unibest` 等模板。
+- HTML 原型不直接依赖 Wot UI 运行时，不生成 `wd-*` 真实组件代码；除非用户要求真实 uni-app 实现。
+- HTML 原型统一使用本文件的 `mp-*` 类名，但结构、状态和交互必须映射到 Wot UI 组件语义。
+
+## Wot UI 组件映射
+
+| 原型组件 | Wot UI 语义 | 使用规则 |
+| --- | --- | --- |
+| `mp-nav` | Navbar | 标题单行，返回/关闭/更多动作清晰，右侧预留胶囊区。 |
+| `mp-tabbar` | Tabbar | 3-5 个一级入口，图标+文字，当前态主色高亮，可带 Badge。 |
+| `mp-tabs` | Tabs / Segmented | 用于消息、任务、分类列表等同页分类；不得用左右分栏替代。 |
+| `mp-search-row` / `mp-search` | Search | 搜索框全宽稳定，placeholder 明确，清除/搜索反馈完整。 |
+| `mp-filter` | Button / DropMenu / ActionSheet | 筛选按钮 64-88px，点击打开底部筛选弹层，不挤压成竖排。 |
+| `mp-list-card` | Card / Cell / Tag / Badge | 业务列表项全宽可点击，主标题、摘要字段、状态标签固定结构。 |
+| `mp-cell-group` / `mp-cell` | Cell / CellGroup | 设置项、详情字段、跳转项；可用右箭头、说明、状态，点击区不小于 44px。 |
+| `mp-primary` / `mp-secondary` / `mp-danger` | Button | 主按钮、次按钮、危险按钮支持全宽、禁用、加载和文字按钮语义。 |
+| `mp-form-section` / `mp-field` | Form / Input / Textarea / Picker / SelectPicker / Calendar / DatetimePicker / Upload | 表单分组，枚举/日期/人员/组织优先选择器，长文本用 Textarea，附件用 Upload 语义。 |
+| `mp-bottom-action` | Button + Sticky | 底部主操作避开安全区，单主按钮全宽，双按钮有主次关系。 |
+| `mp-bottom-sheet` | Popup position=bottom | 底部弹层限制在手机容器内，保留安全区，最大高度 70%-75%。 |
+| `mp-action-sheet` | ActionSheet | 更多操作、原因选择、轻量确认；操作项高度稳定。 |
+| `mp-dialog` / `mp-toast` / `mp-notify` | Dialog / Toast / Notify | 高风险确认用 Dialog，轻量成功/失败用 Toast，系统提醒用 Notify。 |
+| `mp-status-tag` | Tag | 状态必须有文字，不能只靠颜色表达。 |
+| `mp-metric-grid` / `mp-quick-grid` | Grid / Badge | 首页指标和快捷入口，数量受控，图标和文案稳定。 |
+| `mp-empty` / `mp-skeleton` / `mp-loadmore` | Empty / Skeleton / Loadmore | 空数据、加载中、分页加载必须有真实业务文案。 |
+
 ## 基础布局
 
 所有小程序 HTML 原型必须有稳定手机容器：

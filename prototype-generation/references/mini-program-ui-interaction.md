@@ -2,7 +2,7 @@
 
 ## 定位
 
-本规范叠加在 `mobile-ui-interaction.md` 之上，适用于微信小程序、企业微信小程序和类似小程序容器的原型。它以微信官方设计体系和 WeUI 组件习惯为主线，结合企业业务原型常见场景整理。
+本规范叠加在 `mobile-ui-interaction.md` 之上，适用于微信小程序、企业微信小程序和类似小程序容器的原型。它以微信官方设计体系、WeUI 组件习惯和 Wot UI / Wot Design Uni 企业级移动组件体系为主线，结合企业业务原型常见场景整理。
 
 生成小程序原型时，应同时遵守：
 
@@ -10,12 +10,16 @@
 2. `mobile-ui-interaction.md` 移动端通用规范。
 3. 本文件的小程序平台补充规范。
 4. `mini-program-template-system.md` 固定页面模板与组件模板；生成 HTML 小程序原型时必须先选模板，再组合组件。
+5. 组件结构优先映射 Wot UI 组件语义；HTML 原型保留轻量 `mp-*` 类名，真实 uni-app 实现再替换为 `wd-*` 组件。
 
 ## 参考来源
 
 - WeUI 官网：`https://weui.io/`
 - Tencent WeUI for 小程序：`https://github.com/Tencent/weui-wxss`
 - 腾讯 CoDesign 小程序 UI 设计规范：`https://codesign.qq.com/hc/article/design-system-mini-program/`
+- Wot UI 设计价值观：`https://wot-ui.cn/guide/design.html`
+- Wot UI 模板：`https://wot-ui.cn/guide/templates.html`
+- Wot UI 组件库：`https://wot-ui.cn/component/button.html`
 
 ## 平台特征
 
@@ -58,6 +62,18 @@
 - Progress：进度、达成率、步骤完成度。
 - Icon/Tag：状态、结果、提醒和轻量分类。
 - Search：列表检索、项目/人员/记录搜索。
+
+## Wot UI 组件映射
+
+当用户指定或默认采用 Wot UI 作为小程序设计规范、模板和组件参考时，原型仍使用 `mp-*` 轻量组件名，但结构、状态和交互应映射到 Wot UI 组件语义：
+
+- Navbar/Tabbar/Tabs/Segmented：顶部导航、底部一级入口、分类 Tab、分段切换。
+- Search/DropMenu/ActionSheet：列表搜索、筛选入口、筛选弹层和枚举选择。
+- Cell/CellGroup/Card/Grid：我的页、设置页、详情字段、快捷入口、业务列表卡片。
+- Button：主按钮、次按钮、危险按钮、文字按钮、禁用态、加载态和全宽底部按钮。
+- Form/Input/Textarea/Picker/SelectPicker/Calendar/DatetimePicker/Upload：录入、编辑、日期、人员、组织、附件和图片上传。
+- Popup/ActionSheet/Dialog/Toast/Notify：底部弹层、更多操作、高风险确认、轻量反馈和消息通知。
+- Tag/Badge/Empty/Skeleton/Sticky/Loadmore：状态标签、未读角标、空状态、加载骨架、吸顶筛选和分页加载。
 
 ## 页面类型
 
