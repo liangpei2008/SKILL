@@ -25,17 +25,21 @@ description: Initialize a lightweight Chinese software-project workspace with st
 ├─ 05_售前方案/
 │  └─ 行业分析/
 ├─ 06_客户确认/
+├─ tools/
 ├─ AGENTS.md
 └─ README_项目索引.md
 ```
 
 `05_售前方案/行业分析` 用于沉淀售前工程师的轻量行业速研、行业地图、规则清单、客户产业链定位和项目边界分析。行业分析不再作为根目录独立角色产物，而是售前方案的前置材料。
 
+`tools/` 用于集中存放自动化工具及其生成的辅助产物。初始化时只创建 `tools/`，具体工具子目录按需创建，例如 `tools/playwright/`、`tools/lighthouse/`、`tools/scripts/` 和 `tools/tmp/`，不得预先生成一批空目录。
+
 ## 根目录文件职责
 
 - `AGENTS.md`：规定角色职责、产物目录、上下文来源、协作边界和更新规则。只保存相对稳定的工作约定，不写尚未确认或频繁变化的项目背景与目标。
 - `README_项目索引.md`：记录项目名称、客户、背景、目标、阶段、最新基线、待确认事项和变更记录，随项目推进持续更新。
 - `01_需求/需求探索`：沉淀详细业务背景、业务目标、范围、流程、规则及确认结果。
+- `tools/`：集中存放 Playwright、Lighthouse、爬虫、转换脚本等工具代码，以及截图、trace、测试报告、下载文件和临时输出；正式项目交付物仍放在对应业务目录，不放入 `tools/`。
 
 ## 触发语义
 
@@ -146,6 +150,8 @@ description: Initialize a lightweight Chinese software-project workspace with st
 - 产物应注明输入来源、关键假设、范围边界、待确认事项和主要风险。
 - 完成或确认新产物后，更新 `README_项目索引.md` 的最新基线、待确认事项和变更记录。
 - 不替其他角色擅自作出业务确认、架构承诺、交付承诺或商业承诺。
+- Playwright CLI、Lighthouse、爬虫、转换脚本等自动化工具及其生成的截图、trace、测试报告、下载文件和临时产物，统一放入 `tools/<工具名>/` 或 `tools/tmp/`；不得在项目根目录随意创建 `playwright-*`、`test-results`、`screenshots`、`downloads`、`tmp` 等零散文件夹。
+- 优先复用已有 `tools/` 及对应工具子目录；仅在实际需要时创建新的工具子目录。正式需求、原型、评审、架构、计划、方案和客户确认产物仍放入对应业务目录，不得因使用工具而改变正式产物归档位置。
 
 ## 角色职责与产物目录
 
@@ -177,7 +183,7 @@ description: Initialize a lightweight Chinese software-project workspace with st
 - 创建目录前先解析目标路径，避免在错误位置创建项目。
 - 不删除、不移动、不覆盖用户已有文件。
 - 目录创建可以使用系统命令；`README_项目索引.md` 和 `AGENTS.md` 的创建或修改使用文件编辑工具。
-- 初始化时同时创建 `README_项目索引.md` 和最小版 `AGENTS.md`；项目背景或目标未知时标记为“待确认”，不得编造。
+- 初始化时同时创建 `tools/`、`README_项目索引.md` 和最小版 `AGENTS.md`；项目背景或目标未知时标记为“待确认”，不得编造。
 - 如果 `AGENTS.md` 已存在，保留其中已有的项目专属规则，不覆盖；仅在文件缺失时创建默认模板。对是否补充已有文件存在疑问时，先征求用户确认。
 - 初始化完成后返回项目根目录、已创建目录、项目索引和 `AGENTS.md` 路径。
 - 不自动启动售前前置分析、需求探索、QA、架构、项目计划或售前方案；除非用户明确要求继续调用对应角色。
@@ -185,6 +191,7 @@ description: Initialize a lightweight Chinese software-project workspace with st
 ## 质量检查
 
 - 目录结构与轻量模板一致，且行业分析归入 `05_售前方案/行业分析`。
+- 自动化工具及其辅助产物集中在 `tools/` 下，项目根目录没有散落的工具专用文件夹；未使用的工具子目录没有被提前创建。
 - 没有重复嵌套项目名。
 - 已有目录和文件被保留。
 - `README_项目索引.md` 存在且项目名称、客户名称、项目背景、项目目标、初始化日期和根目录可追踪；未知项已明确标记为“待确认”。
