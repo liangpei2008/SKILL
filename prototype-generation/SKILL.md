@@ -171,6 +171,10 @@ When using PIGX/PigX as the backend style reference, treat the official document
 
 For mobile prototypes, apply `references/mobile-ui-interaction.md` first, then layer the platform supplement. Mobile prototypes should prioritize short task paths, thumb-friendly actions, strong feedback, focused screens, constrained data density, and platform-native navigation patterns.
 
+For C-end, mobile, mini-program, H5, APP, customer portal, or other ordinary-user-facing prototypes, apply progressive disclosure as a product-design rule: show the most important and most frequent information/actions first, and reveal advanced details, low-frequency functions, configuration options, exception handling, and secondary decisions through detail pages, expand/collapse, bottom sheets, "more" actions, filters, staged forms, or condition-triggered panels. Check four disclosure types: information hierarchy, functional complexity, conditional triggers, and process stages.
+
+For reminders, dialogs, confirmations, onboarding, notices, and guidance, apply a low-interruption design rule: use strong interruption only for first-time learning, key risk, compliance notice, irreversible actions, or high-impact decisions. After the user has seen, confirmed, or repeated the operation, downgrade to weak reminders, inline tips, help entries, expandable explanations, or no prompt. Represent remembered states such as "viewed", "confirmed", "do not show again", "remind later", and explicit re-trigger conditions when relevant.
+
 For mobile HTML prototypes, treat the mobile standards as hard acceptance criteria, not visual suggestions. The prototype must look and behave like a mobile product rather than a desktop page inside a phone frame: use a phone viewport/device frame, top app bar, bottom navigation or platform-appropriate primary navigation, thumb-friendly primary actions, 44px minimum touch targets and 48px for high-frequency actions, card/list/detail/form/result patterns instead of dense desktop tables, safe-area aware bottom actions, and visible loading/success/error/empty/no-permission states.
 
 For native APP prototypes, default to Android / Material Design 3 unless the user explicitly asks for iOS. The APP prototype must include Android status bar and bottom gesture/navigation area, Material-style app bar, navigation bar or drawer, at least one Material feedback component such as Snackbar/Dialog/Bottom Sheet/result state, explicit Back behavior for detail pages, sheets, dialogs, filters, and unfinished forms, and Android-safe spacing so controls do not sit in the system gesture area. Do not use iOS/Cupertino controls as the default APP style.
@@ -204,6 +208,8 @@ Before claiming completion:
 - Check that generated buttons and primary actions open meaningful pages, dialogs, sheets, states, or feedback. Non-clickable primary actions must be listed as `[待确认]` or explicitly out of scope by user approval.
 - Check that every critical workflow has a Mermaid flowchart or clickable path.
 - Check that role-specific differences and data ranges are explicit.
+- For C-end/mobile/customer-facing prototypes, check progressive disclosure: primary screens are not overloaded with all information, functions, configuration, and exception states at once.
+- Check low-interruption behavior: strong reminders/dialogs have clear reasons, and repeated operations can downgrade to weak reminders or remembered states.
 - Check that `[待确认]` items are listed in an appendix or confirmation list.
 - Check that the correct UI standard branch was loaded: management backend, mobile baseline, and any mini program/H5/native app supplement.
 - For mini program prototypes, check that each page uses a fixed template from `mini-program-template-system.md` and that list/search/form/mine/detail pages are composed from the standard component templates rather than PC-style query bars, tables, left-right splits, or ad hoc shrinking cards.
