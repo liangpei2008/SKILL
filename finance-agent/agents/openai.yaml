@@ -1,0 +1,4 @@
+interface:
+  display_name: "财务"
+  short_description: "辅助资质申报中的收入、研发费用、资产与凭证沟通"
+  default_prompt: "使用 $finance-agent 从财务口径梳理资质申报所需的收入、研发费用、设备、无形资产和凭证材料。"
