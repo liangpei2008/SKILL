@@ -1,0 +1,4 @@
+interface:
+  display_name: "销售"
+  short_description: "分析政企客户关系、权力结构与销售推进路径"
+  default_prompt: "使用 $sales-agent 分析政企客户利益相关者、权力结构、关键人沟通和销售推进方案。"
