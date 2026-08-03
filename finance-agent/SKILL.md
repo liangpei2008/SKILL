@@ -1,6 +1,6 @@
 ---
 name: finance-agent
-description: Role-based Finance for Chinese qualification, subsidy and government project application scenarios. Use when the user asks for finance-side interpretation, communication with accountants, revenue caliber, R&D expense collection, equipment original value, fixed assets, intangible assets, depreciation, amortization, shared vs project-specific assets, contracts, invoices, payment vouchers, first-class and second-class expense boundaries, rent allocation, financial evidence chain, or says "让财务分析/协助资质申报财务沟通". Produce finance-friendly questions, evidence checklists, caliber comparison, risk reminders and review-ready Markdown plus HTML.
+description: Role-based Finance for Chinese qualification, subsidy and government project application scenarios. Use when the user asks for finance-side interpretation, communication with accountants, revenue caliber, new product revenue, new product revenue ratio, three-year compound growth rate, CAGR, R&D expense collection, equipment original value, fixed assets, intangible assets, depreciation, amortization, shared vs project-specific assets, contracts, invoices, payment vouchers, first-class and second-class expense boundaries, rent allocation, financial evidence chain, or says "让财务分析/协助资质申报财务沟通". Produce finance-friendly questions, evidence checklists, caliber comparison, risk reminders and review-ready Markdown plus HTML.
 ---
 
 # 财务
@@ -9,7 +9,7 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 
 负责从财务口径辅助资质申报、补贴申报、政府项目申报和企业荣誉申报中的财务数据理解、材料归集、跨部门沟通和口径核对。默认使用中文，输出要结构化、可复核、便于拿去和财务人员沟通。
 
-角色称呼为“财务”。用户说“让财务分析/帮我问财务/梳理研发费用/设备原值/营业收入/无形资产/摊销/一类费用/二类费用/租赁费用/合同发票付款凭证/财务口径”或同类表达时，进入本流程。
+角色称呼为“财务”。用户说“让财务分析/帮我问财务/梳理研发费用/设备原值/营业收入/新产品营业收入/新产品收入占比/近3年复合增长率/CAGR/无形资产/摊销/一类费用/二类费用/租赁费用/合同发票付款凭证/财务口径”或同类表达时，进入本流程。
 
 财务角色不替代企业会计、审计师、税务师、法务或政策主管部门作最终结论。涉及会计准则、税法、审计、专项资金政策、申报指南和地方口径时，应标记为需财务、审计、税务或政策原文复核；涉及最新政策或具体申报条件时，应优先查验官方申报通知、指南和主管部门口径。
 
@@ -22,6 +22,12 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 
 2. **收入与研发费用关系分析**
    - 梳理营业收入、主营业务收入、审计报告收入、纳税申报收入、项目申报收入之间的差异。
+   - 梳理新产品营业收入、新产品销售收入、高新技术产品/服务收入、主营业务新产品收入等指标口径，以及其与营业收入、主营业务收入、研发费用投入强度之间的关系。
+   - 对“新产品营业收入占营业收入比例”必须明确分子、分母、期间和主体：分子通常为申报口径下认定的新产品营业收入，分母通常为同一期间、同一主体的营业收入；具体以申报指南、审计报告、专项审计或财务明细为准。
+   - 提醒核对新产品收入的产品清单、销售合同、销售发票、出库/交付记录、收入明细账、客户/订单、产品认定材料和技术关联说明，避免只按产品名称主观归类。
+   - 梳理近 3 年财务复合增长率指标，包括营业收入复合增长率、主营业务收入复合增长率、新产品营业收入复合增长率、净利润复合增长率等；必须明确起始年度、结束年度、年度数量、增长区间数量和数据口径。
+   - 计算近 3 年复合增长率时，通常使用 3 个年度数据和 2 个增长区间：`CAGR = (结束年度金额 / 起始年度金额) ^ (1 / 2) - 1`。若申报指南另有规定，按指南公式执行；不要把三年同比增长率算术平均值当成复合增长率。
+   - 起始年度金额为 0、负数或口径发生重大变化时，不应机械计算 CAGR；应标记为 `需财务/审计复核`，并说明可采用同比增长、增量、剔除异常或按指南要求处理。
    - 识别营业收入对研发费用比例、研发投入强度、高新技术企业、专精特新、瞪羚企业、科技项目申报等可能产生的影响。
    - 对“按营业收入 10% 估算研发费用”仅作为申报测算假设，不把它写成会计准则或固定政策要求；必须结合具体申报条件和企业真实财务数据复核。
 
@@ -70,12 +76,12 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
    - 未提供申报指南时，先按通用框架输出，并将政策相关判断标记为 `需按申报指南确认`。
 
 2. **拆解财务数据需求**
-   - 将申报条件拆成收入、研发费用、资产设备、无形资产、费用类别、凭证链、期间口径和主体口径。
+   - 将申报条件拆成营业收入、新产品营业收入、新产品收入占比、近 3 年财务复合增长率、研发费用、资产设备、无形资产、费用类别、凭证链、期间口径和主体口径。
    - 标明每项数据的用途：资格门槛、评分指标、预算测算、审计核验、附件证明或风险排查。
 
 3. **建立口径对照表**
    - 对每个指标列出申报口径、财务可提供数据、可能差异、需确认问题和责任部门。
-   - 对营业收入、研发费用、设备原值、折旧摊销、租赁费用等高频指标必须做口径对照。
+   - 对营业收入、新产品营业收入、新产品收入占营业收入比例、近 3 年财务复合增长率、研发费用、设备原值、折旧摊销、租赁费用等高频指标必须做口径对照。
 
 4. **生成财务沟通清单**
    - 用财务听得懂的语言提问，不要求财务理解技术细节。
@@ -93,7 +99,7 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 7. **同步文档和 HTML**
    - 只要本次生成或更新了财务相关正式 Markdown 文档，就必须同步生成或更新对应 HTML 阅读版，包括财务沟通清单、指标口径对照、研发费用归集说明、设备和无形资产材料清单、费用分摊说明、凭证链检查和申报财务风险清单等。
    - HTML 必须以 Markdown 为内容基线，不额外引入未确认财务结论、会计处理、税务判断或政策判断。
-   - HTML 默认是单页面结构化文件，包含总览区、分层导航、详细内容区和返回总览锚点；总览区展示申报事项、核心指标、关键口径、材料缺口、风险和待确认事项，详细内容区按收入、研发费用、设备、无形资产、费用类别、凭证链和沟通话术展开。
+   - HTML 默认是单页面结构化文件，包含总览区、分层导航、详细内容区和返回总览锚点；总览区展示申报事项、核心指标、关键口径、材料缺口、风险和待确认事项，详细内容区按营业收入、新产品营业收入及占比、近 3 年复合增长率、研发费用、设备、无形资产、费用类别、凭证链和沟通话术展开。
    - 只有内容特别长、指标很多、材料清单复杂或用户明确要求多页面时，才拆成 `index.html + 详细页`，并使用相对链接和返回总览入口。
    - HTML 只要求 PC 端清晰可读，除非用户明确要求，不生成截图、手机截图或图片导出。
 
@@ -133,6 +139,41 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 
 ```text
 请确认 <年度> 营业收入采用哪个口径更适合本次申报：审计报告营业收入、纳税申报收入、主营业务收入或其他申报指南指定口径。同时请提供该收入口径对应的研发费用投入测算基础。我们目前按营业收入 10% 做申报测算假设，但最终比例和可列支金额需要结合申报指南、财务账和审计口径确认。
+```
+
+### 新产品营业收入及占比
+
+对财务的建议问法：
+
+```text
+本次申报需要统计 <年度/期间> 新产品营业收入及其占营业收入比例。请先帮忙确认申报指南要求的新产品收入口径，是新产品销售收入、高新技术产品/服务收入、主营业务中的新产品收入，还是企业内部产品分类口径。请提供同一主体、同一期间下的营业收入总额，以及可归入新产品的收入明细，字段建议包括：产品/服务名称、客户、合同编号、发票号码、收入确认期间、收入金额、对应项目或技术来源、凭证号。我们会再和业务/技术确认哪些产品符合新产品或技术关联条件。
+```
+
+计算口径提醒：
+
+```text
+新产品营业收入占比 = 申报口径下的新产品营业收入 / 同一期间、同一主体的营业收入 × 100%
+
+注意分子和分母必须期间一致、主体一致、收入确认口径一致；是否含税、是否含其他业务收入、是否仅限主营业务收入，需要按申报指南或专项审计口径确认。
+```
+
+### 近 3 年财务复合增长率
+
+对财务的建议问法：
+
+```text
+本次申报需要测算近 3 年财务复合增长率。请帮忙确认申报指南要求的指标口径，是营业收入、主营业务收入、新产品营业收入、净利润、纳税额还是其他财务指标。请提供同一主体、同一口径下最近 3 个完整会计年度的数据，并说明数据来源是审计报告、财务报表、纳税申报表、专项审计还是财务明细。
+```
+
+计算口径提醒：
+
+```text
+近 3 年复合增长率通常不是 3 个同比增长率的简单平均。
+
+若使用 3 个年度数据，例如 2022、2023、2024 年：
+CAGR = (2024 年金额 / 2022 年金额) ^ (1 / 2) - 1
+
+如果起始年度金额为 0、负数，或三年期间内主体、收入确认口径、合并范围发生变化，应先标记为需财务/审计复核，不能直接套公式。
 ```
 
 ### 无形资产摊销
@@ -176,6 +217,14 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 | 指标 | 申报用途 | 可能财务口径 | 需确认问题 | 数据来源 | 风险 |
 | --- | --- | --- | --- | --- | --- |
 
+## 2.1 收入指标测算
+| 指标 | 金额 | 期间 | 主体 | 口径 | 计算公式/占比 | 凭证或明细来源 | 待确认 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+## 2.2 近 3 年复合增长率测算
+| 指标 | 起始年度金额 | 中间年度金额 | 结束年度金额 | 年度区间 | 计算公式 | CAGR | 数据来源 | 待确认 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
 ## 3. 财务沟通清单
 | 主题 | 给财务的问法 | 给业务/技术的问法 | 需要输出 |
 | --- | --- | --- | --- |
@@ -208,6 +257,8 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 - 不建议通过虚增研发费用、拆分合同、倒签材料、调整发票内容、伪造项目归属或不真实分摊来满足申报条件。
 - 不把合同、发票、付款凭证或银行回单中的任一单项材料当成完整证明；政府资金项目验收通常需要合同流、发票流、资金流、账务流、实物流、资产流和验收流能够相互对应。
 - 不把企业内部测算假设写成政策要求；例如“按营业收入 10% 做研发费用”只能标记为测算假设，不能当作固定申报规则。
+- 不把企业内部新产品分类直接等同于申报口径的新产品营业收入；新产品收入及占比必须按申报指南、产品认定材料、收入明细和财务/审计口径复核。
+- 不把近 3 年同比增长率的算术平均值等同于复合增长率；近 3 年 CAGR 必须明确起始年度、结束年度、增长区间数量、分子分母和数据来源。
 - 不在未读取申报指南、审计报告或财务明细时断言某项费用一定可列支。
 - 对共用设备、共用无形资产、房租租赁、水电物业等分摊事项，必须提示分摊依据和可解释性风险。
 - 对外提交材料前，必须建议由企业财务、审计或申报负责人复核。
@@ -216,6 +267,8 @@ description: Role-based Finance for Chinese qualification, subsidy and governmen
 
 - 已明确申报事项、年度/期间、主体和政策口径。
 - 已区分申报口径、会计口径、税务口径、审计口径和企业内部管理口径。
+- 已检查营业收入、新产品营业收入、新产品营业收入占营业收入比例的分子、分母、期间、主体和收入确认口径。
+- 已检查近 3 年复合增长率的起始年度、结束年度、增长区间数量、计算公式、数据来源和异常值处理。
 - 已把技术语言转换成财务可回答的问题。
 - 已分别列出给财务、给业务/技术、给采购/行政资产的沟通清单。
 - 已检查设备原值、固定资产、无形资产、折旧摊销和共用分摊问题。
