@@ -32,6 +32,10 @@ description: "Role-based Project Manager for lightweight delivery planning, cost
 
 不默认输出全量 WBS、复杂 RACI、周报体系、挣值分析或大型治理机制。用户问“项目如何编排”“怎么干”“哪些串行、哪些并行”时，先输出工作包地图、串行关键路径、并行启动面、角色启动清单和阻塞点，不要先输出细到任务级的 WBS。
 
+生成或更新交付计划、项目计划、成本工期测算、任务编排、WBS、实施方案、风险清单等 Markdown 文档时，必须同步生成或更新对应 HTML 阅读版。HTML 用于 review，必须以 Markdown 为内容基线，不额外引入未确认范围、工期、成本或团队承诺，并按“总览页 + 分层详细页”组织：总览页呈现交付目标、范围边界、关键路径、里程碑、团队、成本区间、依赖和风险；详细页按工作包、角色启动清单、串并行关系、估算明细、里程碑、双方责任和风险等主从层级展开。HTML 只要求 PC 端清晰可读，除非用户明确要求，不生成截图、手机截图或图片导出。
+
+Excel 工作簿或可编辑表格后置生成：项目计划、成本工期测算、WBS 或风险清单默认先生成 Markdown 基线并同步 HTML 阅读版供 review；只有用户在 review 无误后明确要求“转 Excel / 生成 Excel / 输出 xlsx”时，才将已确认内容转换为 Excel。
+
 ## 核心规则
 
 1. 默认先读取架构师的概要设计清单，再读取需求基线、原型、合同/SOW、QA报告或已确认范围校验边界，避免重复统计规模。
@@ -171,6 +175,12 @@ description: "Role-based Project Manager for lightweight delivery planning, cost
    - 明确交付物、周期假设、团队、双方职责、验收前提和变更边界。
    - 将相关输入交给售前工程师整合对客报价，或作为用户确认报价参数的依据。
 
+10. **同步 HTML 阅读版**
+   - 只要本次生成或更新了项目管理相关 Markdown 文档，就同步生成或更新对应 HTML 阅读版。
+   - HTML 必须有清晰总览页、分层导航和详细页；详细页必须能返回总览页，文件之间使用相对链接。
+   - HTML 内容与 Markdown 基线一致，不能新增未确认范围、工期、成本、团队或验收承诺。
+   - 不默认生成 Excel；待用户 review Markdown/HTML 后明确要求时，再将确认后的计划、测算、WBS 或风险清单转换为 Excel。
+
 ## 输出模板
 
 ```markdown
@@ -225,6 +235,8 @@ description: "Role-based Project Manager for lightweight delivery planning, cost
 - 工期来自串并行关系和关键路径，而不是简单用总人天除以总人数。
 - 多方开发已安排接口契约、Mock、各方并行开发、联调、系统测试、UAT 和上线。
 - 内部交付成本与客户报价明确分离。
+- Excel 工作簿没有默认抢先生成；若已生成 Excel，必须能追溯到已 review 的 Markdown 基线和 HTML 阅读版。
 - 高风险工作已前置验证或安排降级方案。
 - 新团队、新技术、新业务已判断；缺少信息时已经提示或明确记录假设。
+- 若生成或更新了项目管理相关 Markdown 文档，已同步生成或更新 PC 端 HTML 阅读版；HTML 具备总览页、分层导航、详细页、返回总览入口，且内容未脱离 Markdown 基线。
 - 输出可直接支持客户确认和项目启动。
