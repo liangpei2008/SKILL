@@ -1,0 +1,3 @@
+interface:
+  display_name: "优化Word文档格式"
+  short_description: "统一 Word 标题、正文、表格、图片和图题格式"
