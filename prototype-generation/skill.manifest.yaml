@@ -4,7 +4,7 @@ kind: DomainSkill
 metadata:
   id: prototype-generation
   name: 原型生成技能包
-  version: "1.0.0"
+  version: "1.1.0"
   domain: 产品原型生成
   namespace: "http://example.org/skill/prototype-generation#"
   description: >
@@ -41,6 +41,9 @@ spec:
         - source: bundled
           path: references/admin-backend-ui-interaction.md
           role: ui_interaction_standard
+        - source: bundled
+          path: references/pigx-embed-integration.md
+          role: pigx_embed_standard
         - source: bundled
           path: references/mobile-ui-interaction.md
           role: mobile_ui_baseline

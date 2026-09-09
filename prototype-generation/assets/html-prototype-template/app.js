@@ -15,6 +15,10 @@ function showView(viewName) {
   });
 
   document.querySelector("#view-title").textContent = titles[viewName] || "业务原型";
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("view", viewName);
+  window.history.replaceState({}, "", url);
 }
 
 document.addEventListener("click", (event) => {
@@ -35,3 +39,6 @@ document.querySelector("#approve").addEventListener("click", () => {
 document.querySelector("#reject").addEventListener("click", () => {
   document.querySelector("#feedback").textContent = "已驳回，业务状态退回至提交人修改。";
 });
+
+const initialView = new URLSearchParams(window.location.search).get("view");
+showView(Object.hasOwn(titles, initialView) ? initialView : "dashboard");

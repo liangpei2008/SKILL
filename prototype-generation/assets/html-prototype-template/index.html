@@ -4,10 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>业务原型</title>
+    <script>
+      if (new URLSearchParams(location.search).get("embed") === "1") {
+        document.documentElement.dataset.embed = "1";
+      }
+    </script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <aside class="sidebar">
+    <aside class="sidebar prototype-sidebar">
       <div class="brand">
         <span class="brand-mark"></span>
         <span>业务原型</span>
@@ -20,8 +25,8 @@
       </nav>
     </aside>
 
-    <main class="main">
-      <header class="topbar">
+    <main class="main prototype-main">
+      <header class="topbar prototype-topbar">
         <div>
           <p class="eyebrow">Prototype</p>
           <h1 id="view-title">工作台</h1>

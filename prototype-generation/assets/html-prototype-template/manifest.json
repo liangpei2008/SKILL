@@ -1,0 +1,21 @@
+{
+  "projectId": "business-prototype",
+  "name": "业务原型",
+  "version": "1.0.0",
+  "standaloneEntry": "index.html",
+  "embedParameter": "embed=1",
+  "menus": [
+    {
+      "parent": "业务平台",
+      "name": "工作台",
+      "entry": "index.html?embed=1&view=dashboard",
+      "sort": 1
+    },
+    {
+      "parent": "业务平台",
+      "name": "业务列表",
+      "entry": "index.html?embed=1&view=list",
+      "sort": 2
+    }
+  ]
+}

@@ -27,6 +27,22 @@ body {
   letter-spacing: 0;
 }
 
+html[data-embed="1"] body {
+  display: block;
+}
+
+html[data-embed="1"] .prototype-sidebar,
+html[data-embed="1"] .prototype-topbar {
+  display: none;
+}
+
+html[data-embed="1"] .prototype-main {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 16px;
+}
+
 button,
 input,
 select,

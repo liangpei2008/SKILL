@@ -1,4 +1,4 @@
-version: "1.0.0"
+version: "1.1.0"
 domain: 原型生成
 
 document:
@@ -66,6 +66,11 @@ prototype:
         - 权限管理
         - 数据管理
       reference: references/admin-backend-ui-interaction.md
+      embed_reference: references/pigx-embed-integration.md
+      pigx_embed:
+        enabled_by_default: true
+        parameter: embed=1
+        manifest: manifest.json
       default_first_screen: 工作台或业务列表
       required_patterns:
         - 左侧导航
@@ -154,6 +159,8 @@ completeness_checklist:
     - 是否列出待确认问题
     - 是否说明如何打开或预览原型
     - 若生成HTML，是否确认核心路径可以点击跑通
+    - 若为PC管理后台HTML，是否同时验证普通入口和带embed=1的PIGX嵌入入口
+    - 是否生成manifest.json并列出PIGX菜单映射
   管理后台:
     - 是否识别并套用了管理后台UI与交互规范
     - 是否列表页包含筛选、表格、分页、行内操作、批量操作和状态反馈
